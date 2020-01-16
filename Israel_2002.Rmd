@@ -1,0 +1,23 @@
+---
+title: "Fatalities of Israel in 2002 "
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+#load the data 
+Israel <- read_csv('Israel.csv')
+```
+
+
+
+
+
+```{r}
+plot(cars)
+```
+
+
