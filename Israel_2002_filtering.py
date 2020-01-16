@@ -11,7 +11,8 @@ with open('Israel_2002.json', encoding='utf8') as file:
 
 
 
-with open('Israel.csv', 'w', encoding='utf8') as file:
+with open('Israel_2002.csv', 'w', encoding='utf8') as file:
+    file.write('Country,Fatalities,Year,\n')    
     for incidence in data:
         file.write(f'{incidence["country"]},{incidence["best"]},{incidence["year"]} \n')
 
