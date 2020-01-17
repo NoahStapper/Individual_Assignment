@@ -9,15 +9,37 @@ library(tidyverse)
 
 ```{r}
 #load the data 
-Israel <- read_csv('Israel.csv')
+Israel <- read_csv('Israel_2002.csv')
+```
+
+```{r}
+#load the data 
+MiddleE <- read_csv('Israel_Middle_East_2002.csv')
 ```
 
 
+```{r}
 
+MiddleE_extra <- MiddleE %>%
+  mutate(ya_no = Country == 'Israel') %>%
+  mutate(Israel_yes_no = ifelse(ya_no, 'Israel', 'Middle East conflicts without Israel involvement'))
+
+summary_israel_others <- MiddleE_extra %>% group_by(Israel_yes_no) %>% summarise(n_fatalities = sum(Fatalities))
+summary_all <- summary_israel_others %>% add_row(Israel_yes_no = 'Middle East', n_fatalities = sum(.$n_fatalities))
+
+
+```
 
 
 ```{r}
-plot(cars)
+ggplot()+
+  geom_col(aes(x= Israel_yes_no, y= n_fatalities), summary_all, fill = 'blue') +
+  ggtitle("Comparison of Fatalities in the Middle East with and without Israel involvement") +
+  xlab ("Geographical Area") +
+  ylab ("Number of fatalities")
+
+
+
 ```
 
 
